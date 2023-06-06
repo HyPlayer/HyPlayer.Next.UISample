@@ -1,4 +1,4 @@
-﻿using HyPlayer.UITest.ViewModels;
+﻿using HyPlayer.Next.UISample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-namespace HyPlayer.UITest.Views.Base;
+namespace HyPlayer.Next.UISample.Views.Base;
 
 public abstract class ConnectedPageBase<TViewModel> : ScrollPageBase<TViewModel> where TViewModel : ViewModelBase, new()
 {

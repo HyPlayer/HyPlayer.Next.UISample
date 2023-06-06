@@ -10,8 +10,8 @@
     <ProjectGuid>{C0A359A0-5B74-4B4E-8D21-080C345163DF}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HyPlayer.UITest</RootNamespace>
-    <AssemblyName>HyPlayer.UITest</AssemblyName>
+    <RootNamespace>HyPlayer.Next.UISample</RootNamespace>
+    <AssemblyName>HyPlayer.Next.UISample</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>

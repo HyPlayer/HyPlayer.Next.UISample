@@ -1,12 +1,12 @@
 ﻿<local:MainPageBase
-    x:Class="HyPlayer.UITest.Views.MenuPages.MainPage"
+    x:Class="HyPlayer.Next.UISample.Views.MenuPages.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:HyPlayer.UITest.Views.MenuPages"
+    xmlns:local="using:HyPlayer.Next.UISample.Views.MenuPages"
    
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="using:HyPlayer.UITest.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="using:HyPlayer.Next.UISample.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 

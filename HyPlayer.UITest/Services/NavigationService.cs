@@ -1,4 +1,4 @@
-﻿using HyPlayer.UITest.ViewModels;
+﻿using HyPlayer.Next.UISample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace HyPlayer.UITest.Services;
+namespace HyPlayer.Next.UISample.Services;
 public static class NavigationService
 {
     public static Frame Frame;

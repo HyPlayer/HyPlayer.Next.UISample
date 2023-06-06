@@ -1,14 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using HyPlayer.UITest.Interfaces;
-using HyPlayer.UITest.Services;
+using HyPlayer.Next.UISample.Interfaces;
+using HyPlayer.Next.UISample.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HyPlayer.UITest.ViewModels;
+namespace HyPlayer.Next.UISample.ViewModels;
 public partial class ShellPageVM : ViewModelBase
 {
 

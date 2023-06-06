@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HyPlayer.UITest.ViewModels;
+namespace HyPlayer.Next.UISample.ViewModels;
 
 public partial class ViewModelBase : ObservableObject
 {

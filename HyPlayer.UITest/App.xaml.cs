@@ -1,5 +1,5 @@
-﻿using HyPlayer.UITest.Services;
-using HyPlayer.UITest.Views;
+﻿using HyPlayer.Next.UISample.Services;
+using HyPlayer.Next.UISample.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace HyPlayer.UITest
+namespace HyPlayer.Next.UISample
 {
     /// <summary>
     /// 提供特定于应用程序的行为，以补充默认的应用程序类。

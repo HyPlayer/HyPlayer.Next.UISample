@@ -8,7 +8,7 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
-namespace HyPlayer.UITest.Services; 
+namespace HyPlayer.Next.UISample.Services; 
 public static class InitializeService
 {
     public static void InitializeApp()

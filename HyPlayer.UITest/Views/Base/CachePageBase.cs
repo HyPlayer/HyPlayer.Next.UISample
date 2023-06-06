@@ -1,6 +1,6 @@
-﻿using HyPlayer.UITest.Interfaces;
-using HyPlayer.UITest.Services;
-using HyPlayer.UITest.ViewModels;
+﻿using HyPlayer.Next.UISample.Interfaces;
+using HyPlayer.Next.UISample.Services;
+using HyPlayer.Next.UISample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace HyPlayer.UITest.Views.Base;
+namespace HyPlayer.Next.UISample.Views.Base;
 public class CachePageBase<TViewModel>:Page where TViewModel: ViewModelBase,new()
 {
     public TViewModel ViewModel { get; set; }

@@ -1,7 +1,7 @@
-﻿using HyPlayer.UITest.Interfaces;
-using HyPlayer.UITest.Services;
-using HyPlayer.UITest.ViewModels;
-using HyPlayer.UITest.Views.MenuPages;
+﻿using HyPlayer.Next.UISample.Interfaces;
+using HyPlayer.Next.UISample.Services;
+using HyPlayer.Next.UISample.ViewModels;
+using HyPlayer.Next.UISample.Views.MenuPages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace HyPlayer.UITest.Views;
+namespace HyPlayer.Next.UISample.Views;
 public sealed partial class ShellPage : Page
 {
     public ShellPageVM ViewModel;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
-namespace HyPlayer.UITest.Interfaces;
+namespace HyPlayer.Next.UISample.Interfaces;
 
 public interface IScrollable
 {

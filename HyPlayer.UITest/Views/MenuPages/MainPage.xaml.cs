@@ -1,7 +1,7 @@
-﻿using HyPlayer.UITest.Interfaces;
-using HyPlayer.UITest.Services;
-using HyPlayer.UITest.ViewModels;
-using HyPlayer.UITest.Views.Base;
+﻿using HyPlayer.Next.UISample.Interfaces;
+using HyPlayer.Next.UISample.Services;
+using HyPlayer.Next.UISample.ViewModels;
+using HyPlayer.Next.UISample.Views.Base;
 using Microsoft.Toolkit.Uwp.UI;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
@@ -25,7 +25,7 @@ using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
-namespace HyPlayer.UITest.Views.MenuPages;
+namespace HyPlayer.Next.UISample.Views.MenuPages;
 /// <summary>
 /// 可用于自身或导航至 Frame 内部的空白页。
 /// </summary>

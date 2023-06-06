@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using HyPlayer.UITest.Interfaces;
-using HyPlayer.UITest.Services;
-using HyPlayer.UITest.Views.MenuPages;
+using HyPlayer.Next.UISample.Interfaces;
+using HyPlayer.Next.UISample.Services;
+using HyPlayer.Next.UISample.Views.MenuPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace HyPlayer.UITest.ViewModels;
+namespace HyPlayer.Next.UISample.ViewModels;
 public partial class MainPageVM:ViewModelBase, IConnectedViewModel
 {
     public int ConnectedItemId { get; set; }

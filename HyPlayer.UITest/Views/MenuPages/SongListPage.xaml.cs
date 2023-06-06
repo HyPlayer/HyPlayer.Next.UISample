@@ -1,5 +1,5 @@
-﻿using HyPlayer.UITest.ViewModels;
-using HyPlayer.UITest.Views.Base;
+﻿using HyPlayer.Next.UISample.ViewModels;
+using HyPlayer.Next.UISample.Views.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 
-namespace HyPlayer.UITest.Views.MenuPages;
+namespace HyPlayer.Next.UISample.Views.MenuPages;
 
 public sealed partial class SongListPage : SongListPageBase
 {

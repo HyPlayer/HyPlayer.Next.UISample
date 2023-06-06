@@ -1,5 +1,5 @@
-﻿using HyPlayer.UITest.Interfaces;
-using HyPlayer.UITest.ViewModels;
+﻿using HyPlayer.Next.UISample.Interfaces;
+using HyPlayer.Next.UISample.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace HyPlayer.UITest.Views.Base;
+namespace HyPlayer.Next.UISample.Views.Base;
 
 public abstract class ScrollPageBase<TViewModel> : CachePageBase<TViewModel>
     where TViewModel : ViewModelBase, new()
