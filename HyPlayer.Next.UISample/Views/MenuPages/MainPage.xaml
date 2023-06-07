@@ -154,12 +154,11 @@
                             Foreground="White"
                             Text="{x:Bind ViewModel.Artist, Mode=OneWay}" />
                     </StackPanel>
-                    <Border>
+                    <Border x:Name="TransitionBorder" Margin="0,0,0,-1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="1,0">
-                                <GradientStop Offset="0.6" Color="#0000" />
-                                <GradientStop Offset="0.90" Color="#80303030" />
-                                <GradientStop Offset="1" Color="#272727" />
+                                <GradientStop Offset="0.8" Color="#0000" />
+                                <GradientStop Offset="1" Color="{x:Bind Background,Converter={StaticResource BrushToColorConverter}}"/>
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>

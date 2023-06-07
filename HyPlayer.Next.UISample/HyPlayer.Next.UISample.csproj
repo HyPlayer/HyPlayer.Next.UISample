@@ -123,6 +123,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ConnectedAnimationHelper.cs" />
+    <Compile Include="Helpers\Converters\BrushToColorConverter.cs" />
     <Compile Include="Models\PlayList.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Models\User.cs" />
