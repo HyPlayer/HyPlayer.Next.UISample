@@ -50,18 +50,13 @@ public sealed partial class MainPage : MainPageBase
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
+        await Task.Delay(1);
         PlayListView.ItemClick += ListItemClicked;
         LeaderboardView.ItemClick += ListItemClicked;
-
-    }
-    public override async void PageLoaded(object sender, RoutedEventArgs e)
-    {
-        base.PageLoaded(sender, e);
-        await Task.Delay(100);
-        if (_navigationEventArgs.NavigationMode == NavigationMode.Back)//从上个页面返回到当前页面
+        if (e.NavigationMode == NavigationMode.Back)//从上个页面返回到当前页面
         {
             var element = FindName(ViewModel.ConnectedElementName);
-            if (element is ListViewBase listView)
+            if(element is ListViewBase listView)
             {
                 ConnectedAnimationHelper.PlayBackAnimation(listView, ViewModel.ConnectedItemIndex.Value);
             }
