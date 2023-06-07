@@ -11,7 +11,7 @@ public interface IConnectedViewModel
     /// <summary>
     /// 编号
     /// </summary>
-    int ConnectedItemId { get; set; }
+    int? ConnectedItemIndex { get; set; }
     /// <summary>
     /// 元素名称
     /// </summary>

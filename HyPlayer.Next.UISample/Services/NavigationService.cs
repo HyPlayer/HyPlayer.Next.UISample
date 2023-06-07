@@ -27,10 +27,5 @@ public static class NavigationService
     }
 
 }
-public class NavigationParameter
-{
-    public ViewModelBase ViewModel;
-    public object Parameter;
-}
 
 

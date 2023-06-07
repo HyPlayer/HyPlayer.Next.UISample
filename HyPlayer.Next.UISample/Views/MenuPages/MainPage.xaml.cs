@@ -3,9 +3,12 @@ using HyPlayer.Next.UISample.Services;
 using HyPlayer.Next.UISample.ViewModels;
 using HyPlayer.Next.UISample.Views.Base;
 using Microsoft.Toolkit.Uwp.UI;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,6 +25,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using ConnectedAnimationHelper = HyPlayer.Next.UISample.Helpers.ConnectedAnimationHelper;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -34,45 +38,44 @@ public sealed partial class MainPage : MainPageBase
     public MainPage() => InitializeComponent();
     public override ScrollViewer GetScrollViewer() => MainScrollViewer;
 
-    private bool _isBack;
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-        SongView.ItemClick += SongListItemClicked;
-        LeaderBoardView.ItemClick += SongListItemClicked;
-        if(e.NavigationMode == NavigationMode.Back)
-        {
-            _isBack = true;
-        }
-    }
-    public override async void PageLoaded(object sender, RoutedEventArgs e)
-    {
-        base.PageLoaded(sender, e);
-        await Task.Delay(1);
-        if (!_isBack)
-            return;
-        var element = FindName(ViewModel.ConnectedElementName);
-        var item = ((ListViewBase)element).ContainerFromIndex(ViewModel.ConnectedItemId);
-        ConnectedAnimation animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("backAnimation");
-        if (animation != null)
-        {
-            animation.TryStart((UIElement)((GridViewItem)item).Content);
-        }
 
-    }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
         base.OnNavigatedFrom(e);
-        SongView.ItemClick -= SongListItemClicked;
+        PlayListView.ItemClick -= ListItemClicked;
+        LeaderboardView.ItemClick -= ListItemClicked;
     }
-    private void SongListItemClicked(object sender, ItemClickEventArgs e)
-    { 
-        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("forwardAnimation", e.ClickedItem as UIElement);
-        var view = (ListViewBase)sender;
-        var container = view.ContainerFromItem(e.ClickedItem);
-        ViewModel.ConnectedItemId = view.IndexFromContainer(container);
-        ViewModel.ConnectedElementName = view.Name;
+
+    protected override async void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+        PlayListView.ItemClick += ListItemClicked;
+        LeaderboardView.ItemClick += ListItemClicked;
+
+    }
+    public override async void PageLoaded(object sender, RoutedEventArgs e)
+    {
+        base.PageLoaded(sender, e);
+        await Task.Delay(100);
+        if (_navigationEventArgs.NavigationMode == NavigationMode.Back)//从上个页面返回到当前页面
+        {
+            var element = FindName(ViewModel.ConnectedElementName);
+            if (element is ListViewBase listView)
+            {
+                ConnectedAnimationHelper.PlayBackAnimation(listView, ViewModel.ConnectedItemIndex.Value);
+            }
+            else
+            {
+                ConnectedAnimationHelper.PlayBackAnimation((UIElement)element);
+            }
+        }
+    }
+
+
+    private void ListItemClicked(object sender, ItemClickEventArgs e)
+    {
+        ConnectedAnimationHelper.PrepareForwardAnimation(ViewModel,(ListViewBase)sender, e.ClickedItem);
     }
 }
 public abstract class MainPageBase : ScrollPageBase<MainPageVM>

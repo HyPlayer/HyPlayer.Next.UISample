@@ -1,5 +1,6 @@
 ﻿using HyPlayer.Next.UISample.Interfaces;
 using HyPlayer.Next.UISample.ViewModels;
+using HyPlayer.Next.UISample.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using Windows.UI.Xaml.Controls;
 namespace HyPlayer.Next.UISample.Views.Base;
 
 public abstract class ScrollPageBase<TViewModel> : CachePageBase<TViewModel>
-    where TViewModel : ViewModelBase, new()
+    where TViewModel : class, IScrollableViewModel, new()
 {
     public abstract ScrollViewer GetScrollViewer();
 

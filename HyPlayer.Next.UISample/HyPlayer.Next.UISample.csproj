@@ -122,19 +122,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IConnectedViewModel.cs" />
-    <Compile Include="Interfaces\IPageCache.cs" />
-    <Compile Include="Interfaces\IScrollable.cs" />
-    <Compile Include="Interfaces\IViewModel.cs" />
+    <Compile Include="Helpers\ConnectedAnimationHelper.cs" />
+    <Compile Include="Models\PlayList.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\Interfaces\IConnectedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\InitializeService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="ViewModels\Interfaces\IScrollableViewModel.cs" />
     <Compile Include="ViewModels\MainPageVM.cs" />
     <Compile Include="ViewModels\ShellPageVM.cs" />
     <Compile Include="ViewModels\SongListPageVM.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Base\CachePageBase.cs" />
-    <Compile Include="Views\Base\ConnectedPageBase.cs" />
     <Compile Include="Views\Base\ScrollPageBase.cs" />
     <Compile Include="Views\MenuPages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -199,9 +199,7 @@
       <Version>2.8.4</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

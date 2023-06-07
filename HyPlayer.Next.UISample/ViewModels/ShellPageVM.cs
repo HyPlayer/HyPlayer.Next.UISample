@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace HyPlayer.Next.UISample.ViewModels;
-public partial class ShellPageVM : ViewModelBase
+public partial class ShellPageVM :ObservableObject
 {
 
     [RelayCommand]

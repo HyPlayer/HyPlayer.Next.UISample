@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HyPlayer.Next.UISample.ViewModels;
+namespace HyPlayer.Next.UISample.ViewModels.Interfaces;
 
-public partial class ViewModelBase : ObservableObject
+public interface IScrollableViewModel
 {
-    [ObservableProperty]
-    public double scrollValue;
+    double ScrollValue { get; set; }
 }
 

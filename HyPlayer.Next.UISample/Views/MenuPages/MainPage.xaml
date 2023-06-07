@@ -5,10 +5,116 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:HyPlayer.Next.UISample.Views.MenuPages"
-   
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="using:HyPlayer.Next.UISample.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:HyPlayer.Next.UISample.Models"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:viewmodels="using:HyPlayer.Next.UISample.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="SongTemplate" x:DataType="models:Song">
+            <Border
+                Margin="2,4,2,0"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                CornerRadius="8">
+                <Grid>
+                    <StackPanel
+                        Margin="16,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Border
+                            x:Name="ItemThumbnail"
+                            Width="64"
+                            Height="64"
+                            VerticalAlignment="Center"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            CornerRadius="4">
+                            <FontIcon FontSize="24" Glyph="&#xEC4F;" />
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                Text="{x:Bind Name}" />
+                            <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="{x:Bind Artist}" />
+                            <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="{x:Bind Album}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock
+                        Margin="16"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                        Text="{x:Bind DurationString}" />
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="PlayListTemplate" x:DataType="models:PlayList">
+            <Border
+                Margin="2,4,2,0"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                CornerRadius="8">
+                <Grid>
+                    <StackPanel
+                        Margin="16,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Border
+                            Width="64"
+                            Height="64"
+                            VerticalAlignment="Center"
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                            CornerRadius="4">
+                            <FontIcon FontSize="24" Glyph="&#xE142;" />
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                Text="{x:Bind Name, Mode=OneWay}" />
+                            <TextBlock
+                                Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                                Text="{x:Bind User.Name, Mode=OneWay}"
+                                TextTrimming="WordEllipsis" />
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock
+                        Margin="16"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                        Text="10W" />
+
+                </Grid>
+            </Border>
+
+        </DataTemplate>
+        <DataTemplate x:Key="LeaderboardTemplate" x:DataType="models:PlayList">
+            <Border
+                Margin="2,4,2,0"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                CornerRadius="8">
+                <Grid>
+                    <FontIcon FontSize="40" Glyph="&#xE142;" />
+                    <TextBlock
+                        Margin="16"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
+                        Text="10W" />
+                </Grid>
+            </Border>
+
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid>
         <ScrollViewer x:Name="MainScrollViewer">
@@ -42,11 +148,11 @@
                             FontSize="36"
                             FontWeight="SemiBold"
                             Foreground="White"
-                            Text="{x:Bind ViewModel.SongName,Mode=OneWay}" />
+                            Text="{x:Bind ViewModel.SongName, Mode=OneWay}" />
                         <TextBlock
                             FontSize="16"
                             Foreground="White"
-                            Text="{x:Bind ViewModel.Artist,Mode=OneWay}" />
+                            Text="{x:Bind ViewModel.Artist, Mode=OneWay}" />
                     </StackPanel>
                     <Border>
                         <Border.Background>
@@ -90,20 +196,26 @@
                     Canvas.ZIndex="1"
                     Orientation="Horizontal"
                     Spacing="12">
-                    <Button Padding="16" CornerRadius="12" Command="{x:Bind ViewModel.ChangeSongCommand,Mode=OneWay}">
+                    <Button
+                        Padding="16"
+                        Command="{x:Bind ViewModel.ChangeSongCommand, Mode=OneWay}"
+                        CornerRadius="12">
                         <StackPanel Orientation="Horizontal" Spacing="12">
                             <FontIcon FontSize="24" Glyph="&#xE006;" />
                             <TextBlock FontSize="16" Text="我的喜欢" />
                         </StackPanel>
                     </Button>
-                    <Button Padding="16" CornerRadius="12">
+                    <Button
+                        Padding="16"
+                        Command="{x:Bind ViewModel.GetSongsCommand, Mode=OneWay}"
+                        CornerRadius="12">
                         <StackPanel Orientation="Horizontal" Spacing="12">
                             <FontIcon FontSize="24" Glyph="&#xE163;" />
                             <TextBlock FontSize="16" Text="每日推荐" />
 
                         </StackPanel>
                     </Button>
-                    <Button Padding="16" CornerRadius="12">
+                    <Button Padding="16" CornerRadius="12" Command="{x:Bind ViewModel.OpenSongListCommand,Mode=OneWay}" >
                         <StackPanel Orientation="Horizontal" Spacing="12">
                             <FontIcon FontSize="24" Glyph="&#xEFA9;" />
                             <TextBlock FontSize="16" Text="私人FM" />
@@ -124,162 +236,9 @@
                         Grid.Row="1"
                         DesiredWidth="320"
                         ItemHeight="100"
-                        SelectionMode="None" >
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xEC4F;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="歌手" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="专辑名" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="00:00" />
-
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xEC4F;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="歌手" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="专辑名" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="00:00" />
-
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xEC4F;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="歌手" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="专辑名" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="00:00" />
-
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xEC4F;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="歌手" />
-                                        <TextBlock Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}" Text="专辑名" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="00:00" />
-
-                            </Grid>
-                        </Border>
-
-
-                    </controls:AdaptiveGridView>
+                        ItemTemplate="{StaticResource SongTemplate}"
+                        ItemsSource="{x:Bind ViewModel.Songs, Mode=OneWay}"
+                        SelectionMode="None" />
 
                 </Grid>
                 <Grid Grid.Row="3" RowSpacing="8">
@@ -290,261 +249,22 @@
                     <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="推荐歌单" />
                     <HyperlinkButton HorizontalAlignment="Right" Content="查看更多" />
 
-                    <controls:AdaptiveGridView
-                        x:Name="SongView"
+                    <controls:AdaptiveGridView 
+                        x:Name="PlayListView"                       
                         Grid.Row="1"
                         DesiredWidth="256"
+                        IsItemClickEnabled="True"
+                        ItemClickCommand="{x:Bind ViewModel.OpenSongListCommand, Mode=OneWay}"
                         ItemHeight="100"
-                        SelectionMode="None" 
-                        ItemClickCommand="{x:Bind ViewModel.OpenSongListCommand,Mode=OneWay}"
-                        IsItemClickEnabled="True">
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xE142;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock
-                                            Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                            Text="用户"
-                                            TextTrimming="WordEllipsis" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xE142;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock
-                                            Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                            Text="用户"
-                                            TextTrimming="WordEllipsis" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xE142;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock
-                                            Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                            Text="用户"
-                                            TextTrimming="WordEllipsis" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xE142;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock
-                                            Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                            Text="用户"
-                                            TextTrimming="WordEllipsis" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xE142;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock
-                                            Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                            Text="用户"
-                                            TextTrimming="WordEllipsis" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <StackPanel
-                                    Margin="16,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                                    <Border
-                                        Width="64"
-                                        Height="64"
-                                        VerticalAlignment="Center"
-                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                                        CornerRadius="4">
-                                        <FontIcon FontSize="24" Glyph="&#xE142;" />
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock
-                                            FontSize="20"
-                                            FontWeight="SemiBold"
-                                            Text="标题" />
-                                        <TextBlock
-                                            Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                            Text="用户"
-                                            TextTrimming="WordEllipsis" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-
-                            </Grid>
-                        </Border>
-                    </controls:AdaptiveGridView>
+                        ItemTemplate="{StaticResource PlayListTemplate}"
+                        ItemsSource="{x:Bind ViewModel.PlayLists, Mode=OneWay}"
+                        SelectionMode="None" />
 
                 </Grid>
                 <Grid
                     Grid.Row="4"
                     Margin="0,12,0,0"
-                    RowSpacing="8" >
+                    RowSpacing="8">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
@@ -553,134 +273,15 @@
                     <HyperlinkButton HorizontalAlignment="Right" Content="查看更多" />
 
                     <controls:AdaptiveGridView
-                        x:Name="LeaderBoardView"
-                        IsItemClickEnabled="True"
-                        ItemClickCommand="{x:Bind ViewModel.OpenSongListCommand}"
+                        x:Name="LeaderboardView"
                         Grid.Row="1"
                         DesiredWidth="240"
+                        IsItemClickEnabled="True"
+                        ItemClickCommand="{x:Bind ViewModel.OpenSongListCommand}"
                         ItemHeight="128"
-                        SelectionMode="None">
-                        <Border                          
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Margin="2,4,2,0"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                            CornerRadius="8">
-                            <Grid>
-                                <FontIcon FontSize="40" Glyph="&#xE142;" />
-                                <TextBlock
-                                    Margin="16"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Foreground="{StaticResource SystemControlForegroundBaseMediumBrush}"
-                                    Text="10W" />
-                            </Grid>
-                        </Border>
-                    </controls:AdaptiveGridView>
+                        ItemTemplate="{StaticResource LeaderboardTemplate}"
+                        ItemsSource="{x:Bind ViewModel.Leaderboards, Mode=OneWay}"
+                        SelectionMode="None" />
                 </Grid>
             </Grid>
         </ScrollViewer>

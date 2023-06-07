@@ -9,6 +9,7 @@
     xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <ScrollViewer x:Name="MainScrollViewer">
@@ -37,7 +38,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Border x:Name="AlbumImage" Background="#80404040"
-                        Height="100" Width="100" Canvas.ZIndex="1"
+                        Height="100" Width="100" Canvas.ZIndex="1" 
                     HorizontalAlignment="Left"
                     CornerRadius="8">
                     <FontIcon FontSize="24" Glyph="&#xE142;" />

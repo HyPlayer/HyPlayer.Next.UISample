@@ -11,16 +11,18 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace HyPlayer.Next.UISample.Views.Base;
-public class CachePageBase<TViewModel>:Page where TViewModel: ViewModelBase,new()
+public class CachePageBase<TViewModel>:Page where TViewModel: class,new()
 {
     public TViewModel ViewModel { get; set; }
 
     //public NavigationParameter NavigateParameter { get; set; }
+    protected NavigationEventArgs _navigationEventArgs;
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
         Loaded += PageLoaded;
+        _navigationEventArgs = e;
         var vm = e.Parameter as TViewModel;
 
         if (vm != null)
