@@ -133,7 +133,7 @@
                     Style="{StaticResource TitleTextBlockStyle}"
                     Text="正在播放" />
                 <Grid
-                    Height="400"
+                    Height="420"
                     Margin="-36,-36,-36,0"
                     VerticalAlignment="Top">
                     <controls:ImageEx
@@ -157,7 +157,7 @@
                     <Border x:Name="TransitionBorder" Margin="0,0,0,-1">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="1,0">
-                                <GradientStop Offset="0.8" Color="#0000" />
+                                <GradientStop Offset="0.5" Color="#0000" />
                                 <GradientStop Offset="1" Color="{x:Bind Background,Converter={StaticResource BrushToColorConverter}}"/>
                             </LinearGradientBrush>
                         </Border.Background>
@@ -168,7 +168,7 @@
                     Spacing="2"
                     Visibility="Collapsed">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock
+                        <TextBlock   
                             HorizontalAlignment="Left"
                             FontSize="32"
                             Style="{StaticResource TitleTextBlockStyle}"
@@ -235,6 +235,9 @@
                         Grid.Row="1"
                         DesiredWidth="320"
                         ItemHeight="100"
+                        OneRowModeEnabled="True"
+                        CanBeScrollAnchor="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         ItemTemplate="{StaticResource SongTemplate}"
                         ItemsSource="{x:Bind ViewModel.Songs, Mode=OneWay}"
                         SelectionMode="None" />

@@ -72,6 +72,8 @@ public sealed partial class MainPage : MainPageBase
     {
         ConnectedAnimationHelper.PrepareForwardAnimation(ViewModel,(ListViewBase)sender, e.ClickedItem);
     }
+    protected override void OnPageUnloaded(object sender, RoutedEventArgs e) => Bindings.StopTracking();
+
 }
 public abstract class MainPageBase : ScrollPageBase<MainPageVM>
 {

@@ -16,13 +16,13 @@ public abstract class ScrollPageBase<TViewModel> : CachePageBase<TViewModel>
 {
     public abstract ScrollViewer GetScrollViewer();
 
-    public override void PageLoaded(object sender, RoutedEventArgs e)
+    protected override void OnPageLoaded(object sender, RoutedEventArgs e)
     {
-        base.PageLoaded(sender, e);
+        base.OnPageLoaded(sender, e);
         var scrollViewer = GetScrollViewer();
         scrollViewer.ChangeView(0, ViewModel.ScrollValue, 1,true);
     }
-    public override void Cache()
+    protected override void Cache()
     {
         base.Cache();
         var scrollViewer = GetScrollViewer();

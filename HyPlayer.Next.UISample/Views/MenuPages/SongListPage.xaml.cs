@@ -39,8 +39,6 @@ public sealed partial class SongListPage : SongListPageBase
             ConnectedAnimationHelper.PlayForwardAnimation(AlbumImage);
         }
     }
-
-
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
         base.OnNavigatedFrom(e);
